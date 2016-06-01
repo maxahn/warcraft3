@@ -1,20 +1,38 @@
+require 'pry'
 require_relative 'spec_helper'
 
-# Units that can fight, such as the Footman, have both health points to indicate their health and attack power to indicate how much damage they deal to other units
-# As such, they must start off with a certain amount of each
-require_relative 'footman'
-describe Footman do
-
+describe 'Barracks' do
   before :each do
-    @footman = Footman.new
+    @barracks = Barracks.new
   end
-
-  it "has and knows its HP (health points)" do
-    expect(@footman.health_points).to eq(60)
+  describe '.new' do
+    it 'health should start at 500' do
+      expect(@barracks.health_points).to eq(500) 
+    end
   end
-
-  it "has and knows its AP (attack power)" do
-    expect(@footman.attack_power).to eq(10)
+  describe '#damage' do 
+    
+    it 'health should be 490' do
+      @barracks.damage(10)
+    end
+    
+    it 'soldier should damage 5 so health is 495' do
+      footman = Footman.new
+      footman.attack!(@barracks)
+      expect(@barracks.health_points).to eq(495)
+    end
+  
+    it 'when soldier has an odd attack like 15, should deal 8 damage' do
+      footman = Footman.new
+      
+      #expect(footman).to receive(:attack_power).to_return(15)
+      footman.change_attack_power(15) 
+      footman.attack!(@barracks)
+      expect(@barracks.health_points).to eq(492)
+    end
   end
 
 end
+
+
+

@@ -4,4 +4,8 @@ class Footman < Unit
   def initialize
     super(60,10) 
   end
+
+    def change_attack_power(num)
+      @attack_power = num
+    end
 end
