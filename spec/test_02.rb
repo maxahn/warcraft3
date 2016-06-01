@@ -16,6 +16,6 @@ describe Barracks do
     expect(@barracks.food).to eq(80)
   end
 
-
+  
 
 end
