@@ -115,17 +115,27 @@ describe SiegeEngine do
 
   describe '#can_attack?' do
   
-    it 'should not attack footman' do
+    before :each do
+      @siege_engine_two = SiegeEngine.new 
+      @footman = Footman.new
+      @peasant = Peasant.new
+      @barracks = Barracks.new
+    end
 
+    it 'should not attack footman' do
+      expect(@siege_engine.can_attack?(@footman)).to be false      
     end
 
     it 'should not attack peasant' do
+      expect(@siege_engine.can_attack?(@peasant)).to be false      
     end
     
-    it 'should attack barrackss' do
+    it 'should attack barracks' do
+      expect(@siege_engine.can_attack?(@barracks)).to be true 
     end
 
     it 'should attack siege engine' do
+      expect(@siege_engine.can_attack?(@siege_engine_two)).to be true 
     end
 
   end
