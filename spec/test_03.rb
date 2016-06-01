@@ -79,29 +79,10 @@ describe Barracks do
     end
 
     it 'should not build if not enough gold and lumber' do
-      #expect(@barracks).to receive(:gold).and_return(100)
-      #expect(@barracks).to receive(:lumber).and_return(10)
 
       expect(@barracks).to receive(:gold).and_return(9)
       expect(@barracks).to receive(:lumber).and_return(0)
       
-      expect(@barracks.can_build_siege_engine?).to be false
-    end
-
-    it 'should not build if not enough lumber and food' do 
-     # expect(@barracks).to receive(:lumber).and_return(10)  #found why I got arguemnt errors: it was due to the propert of evaluating && statements 
-     # expect(@barracks).to receive(:food).and_return(1)
-      expect(@barracks).to receive(:lumber).and_return(10)
-      expect(@barracks).to receive(:food).and_return(3)
-      expect(@barracks.can_build_siege_engine?).to be false
-    end
-
-    it 'should not build if not enough food and gold' do 
-      #expect(@barracks).to receive(:gold).and_return(100)
-      #expect(@barracks).to receive(:food).and_return(1)          TODO: fix later
-      
-      expect(@barracks).to receive(:gold).and_return(10)
-      expect(@barracks).to receive(:food).and_return(3)
       expect(@barracks.can_build_siege_engine?).to be false
     end
  
