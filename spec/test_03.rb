@@ -17,10 +17,15 @@ describe Barracks do
 
   describe "#build_siege_engine" do
 
-    it 'should return siege engine' do 
+    it 'should return siege engine can build' do 
       expect(@barracks.build_siege_engine).to be_a SiegeEngine
     end
 
+    it 'should return nil if engine can\'t build' do
+      expect(@barracks).to receive(:can_build_siege_engine?).and_return(false)
+      expect(@barracks.build_siege_engine).to be(nil)
+    end
+    
     it 'gold should be at 800' do
       @barracks.build_siege_engine
       expect(@barracks.gold).to eq(800)
@@ -74,23 +79,32 @@ describe Barracks do
     end
 
     it 'should not build if not enough gold and lumber' do
-      expect(@barracks).to receive(:gold).and_return(100)
-      expect(@barracks).to receive(:lumber).and_return(10)
+      #expect(@barracks).to receive(:gold).and_return(100)
+      #expect(@barracks).to receive(:lumber).and_return(10)
+
+      expect(@barracks).to receive(:gold).and_return(9)
+      expect(@barracks).to receive(:lumber).and_return(0)
+      
       expect(@barracks.can_build_siege_engine?).to be false
     end
 
     it 'should not build if not enough lumber and food' do 
+     # expect(@barracks).to receive(:lumber).and_return(10)  #found why I got arguemnt errors: it was due to the propert of evaluating && statements 
+     # expect(@barracks).to receive(:food).and_return(1)
       expect(@barracks).to receive(:lumber).and_return(10)
-      expect(@barracks).to receive(:food).and_return(1)
+      expect(@barracks).to receive(:food).and_return(3)
       expect(@barracks.can_build_siege_engine?).to be false
     end
 
     it 'should not build if not enough food and gold' do 
-      expect(@barracks).to receive(:gold).and_return(100)
-      expect(@barracks).to receive(:food).and_return(1)
+      #expect(@barracks).to receive(:gold).and_return(100)
+      #expect(@barracks).to receive(:food).and_return(1)          TODO: fix later
+      
+      expect(@barracks).to receive(:gold).and_return(10)
+      expect(@barracks).to receive(:food).and_return(3)
       expect(@barracks.can_build_siege_engine?).to be false
     end
-  
+ 
   end
 
 end

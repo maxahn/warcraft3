@@ -8,4 +8,14 @@ class Footman < Unit
 #   def change_attack_power(num) #unnecessary for now
 #     @attack_power = num
 #   end
+  
+  def attack!(enemy)
+    if enemy.class == Barracks
+      damage_amount = (attack_power.to_f / 2).ceil
+      enemy.damage(damage_amount)
+    else 
+      super
+    end
+  end
+    
 end
