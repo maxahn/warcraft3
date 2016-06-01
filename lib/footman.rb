@@ -5,7 +5,7 @@ class Footman < Unit
     super(60,10) 
   end
 
-    def change_attack_power(num)
-      @attack_power = num
-    end
+#   def change_attack_power(num) #unnecessary for now
+#     @attack_power = num
+#   end
 end

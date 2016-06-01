@@ -25,8 +25,8 @@ describe 'Barracks' do
     it 'when soldier has an odd attack like 15, should deal 8 damage' do
       footman = Footman.new
       
-      #expect(footman).to receive(:attack_power).to_return(15)
-      footman.change_attack_power(15) 
+      expect(footman).to receive(:attack_power).and_return(15)
+      #footman.change_attack_power(15) 
       footman.attack!(@barracks)
       expect(@barracks.health_points).to eq(492)
     end
