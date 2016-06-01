@@ -1,11 +1,13 @@
 require_relative 'footman'
 class Barracks
   
-  attr_accessor :gold, :food, :health_points
+  attr_accessor :gold, :food, :health_points, :lumber
+
   def initialize 
     @gold = 1000
     @food = 80 
     @health_points = 500
+    @lumber = 500
   end
 
   def can_train_footman? 
@@ -35,7 +37,14 @@ class Barracks
       nil
     end
   end
+  
+  def build_siege_engine
 
+  end
+
+  def can_build_siege_engine?
+
+  end
   def damage(amount)
     self.health_points -= (amount.to_f / 2).ceil
   end
